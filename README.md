@@ -1,12 +1,14 @@
 # Kinto for dokku
 
-This is a simple fork of [kinto-heroku](https://github.com/kinto/kinto-heroku) adapted for dokku. At this point part of the setup has to be executed manually. Assuming that `kinto` is the name of your dokku app and both `dokku` and `dokku-postgres` plugin are installed:
+This is a simple fork of [kinto-heroku](https://github.com/kinto/kinto-heroku) adapted for dokku. At this point part of the setup has to be executed manually. Assuming that `kinto` is the name of your dokku app and both `dokku` and `dokku-postgres` and `dokku-letsencrypt` plugins are installed:
 
 on remote server:
 ```
 dokku apps:create kinto
 dokku postgres:create kinto
 dokku postgres:link kinto kinto
+dokku config:set kinto KINTO_USERID_HMAC_SECRET=`openssl rand -base64 32`
+dokku letsencrypt kinto
 ```
 
 on your computer:
