@@ -1,5 +1,25 @@
-# Kinto for heroku
+# Kinto for dokku
 
+This is a simple fork of [kinto-heroku](https://github.com/kinto/kinto-heroku) adapted for dokku. At this point part of the setup has to be executed manually. Assuming that `kinto` is the name of your dokku app and both `dokku` and `dokku-postgres` plugin are installed:
+
+on remote server:
+```
+dokku apps:create kinto
+dokku postgres:create kinto
+dokku postgres:link kinto kinto
+```
+
+on your computer:
+```
+git clone https://github.com/puttu/kinto-dokku
+cd kinto-dokku
+git remote add dokku dokku@YOUR_DOKKU_SERVER:kinto
+git push dokku master
+```
+
+The `kinto-heroku` readme follows.
+
+----------------------------------
 `kinto-heroku` is an example on how to use [Kinto](http://kinto-storage.org) and [Heroku](https://heroku.com) together.
 Following the installation you should have a Kinto server available for you to use.
 
